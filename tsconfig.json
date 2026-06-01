@@ -14,7 +14,8 @@
     "resolveJsonModule": true,
     "allowImportingTsExtensions": false,
     "noEmit": true,
-    "useDefineForClassFields": true
+    "useDefineForClassFields": true,
+    "types": ["vitest/globals"]
   },
-  "include": ["src"]
+  "include": ["src", "test"]
 }

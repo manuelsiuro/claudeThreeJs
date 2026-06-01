@@ -88,3 +88,10 @@ Delegate to the matching agent when a request fits its scope rather than handlin
 - `public/assets/` — static art / audio / 3D files.
 
 **Run:** `npm install && npm run dev` → http://localhost:5173/
+
+**Quality tooling:** `npm run typecheck` (tsc), `npm run lint` (ESLint), `npm run format` / `format:check` (Prettier), `npm test` (Vitest, jsdom). Unit-test pure logic only — rendering/GPU work goes to browser tests (see `vitest-setup` and `visual-feedback-loop` skills).
+
+**Hooks** (`.claude/hooks/`, wired in `.claude/settings.json`):
+- `post-edit-quality.sh` (PostToolUse) — formats edited `src/` files and reports type/lint problems back as context. Warn-only; it rewrites the file you just edited, so re-read before further edits.
+- `user-prompt-context.sh` (UserPromptSubmit) — injects git branch / changed files / the library rule.
+- `stop-verify.sh` (Stop) — **blocks finishing while typecheck or tests fail.** A turn can't end on broken code; fix the reported errors to complete.
